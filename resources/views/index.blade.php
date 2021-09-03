@@ -35,7 +35,8 @@
     border:1px solid #eeeeee;
     border-radius: 3px;
   }
-  .input-update{
+  .input-update,
+  .input-add{
     width:80%;
     height:30px;
   }
@@ -70,6 +71,9 @@
     background-color: #77f9c3;
     color:#ffff;
   }
+  table{
+    margin-top:20px;
+  }
   </style>
 </head>
 
@@ -81,7 +85,7 @@
       <form action="/meal/create" method="POST">
       @csrf
       <input type="date" name="date">
-      <input type="submit" value="記録する" class="add-btn">
+      <input type="submit" value="記録する" class="add-btn" id="add-btn">
     </form>
     <table>
       <tr>
@@ -122,9 +126,46 @@
         </td>
       </tr>
       @endforeach
+
+      <div>
+      <tr>
+        <td>
+          {{$item["updated_at"]}}
+        </td>
+        <form action="/todo/update" method="POST">
+        @csrf
+          <td>
+            <input type="text" class="input-add" value="" name="content">
+          </td>
+          <td>
+            <input type="text" class="input-add" value="" name="content">
+          </td>
+          <td>
+            <input type="text" class="input-add" value="" name="content">
+          </td>
+          <td>
+            <input type="hidden" name="id" value={{$item["id"]}}>
+            <input type="submit" value="更新" class="update-btn"></button>
+          </form>
+        </td>
+        <td>
+          <form action="/todo/delete" method="POST">
+          @csrf
+          <input type="hidden" name="id" value={{$item["id"]}}>
+          <input type="submit" value="削除" class="delete-btn"></button>
+        </form>
+      </td>
+    </tr>
+  </div>
     </table>
     </div>
   </div>
 </div>
+<script>
+  const target = document.getElementById("add-btn");
+target.addEventListener('click', () => {
+  target('open');
+});
+</script>
 </body>
 </html>
