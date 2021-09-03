@@ -12,17 +12,6 @@ class Meal extends Model
     protected $fillable = ['breakfast','lunch','dinner'];
 
     public static $rules = array(
-      'breakfast' => 'required'
-      'lunch' => 'required'
-      'dinner' => 'required'
+      'breakfast','lunch','dinner'=> 'required'
   );
-
-    public function create()
-    {
-      Meal::create([
-        'breakfast' => 'パン',
-        'lunch' => '親子丼',
-        'dinner' => 'ハンバーグ'
-      ]);
-    }
 }

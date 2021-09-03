@@ -80,7 +80,7 @@
     <div class="meal-management">
       <form action="/meal/create" method="POST">
       @csrf
-      <input type="text" name="content">
+      <input type="date" name="date">
       <input type="submit" value="記録する" class="add-btn">
     </form>
     <table>
