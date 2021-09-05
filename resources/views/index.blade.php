@@ -87,6 +87,7 @@
       <input type="date" name="date">
       <input type="submit" value="記録する" class="add-btn" id="add-btn">
       <table>
+      @foreach($items as $item)
       <tr>
         <th>作成日</th>
         <th>朝食</th>
@@ -96,6 +97,7 @@
         <th>削除</th>
       </tr>
       <td>
+      {{$item["date"]}}
       </td>
       <td>
         <input type="text" class="input-add" value="" name="breakfast">
@@ -107,90 +109,54 @@
         <input type="text" class="input-add" value="" name="dinner">
       </td>
       <td>
-        <input type="hidden" name="id" value={{$items["id"]}}>
+        <input type="hidden" name="id" value="{{$item->id}}">
         <input type="submit" value="更新" class="update-btn">
       </td>
       <td>
         <form action="/todo/delete" method="POST">
         @csrf
-        <input type="hidden" name="id" value={{$items["id"]}}>
+        <input type="hidden" name="id" value={{$item["id"]}}>
         <input type="submit" value="削除" class="delete-btn"></button>
         </form>
       </td>
       </tr>
+      @endforeach
     </table>
     </form>
     <table>
       @foreach($items as $item)
       <tr>
         <td>
-          {{$items["updated_at"]}}
+          {{$item["date"]}}
         </td>
         <form action="/todo/update" method="POST">
         @csrf
         <td>
-          <input type="text" class="input-update" value="{{$items["breakfast"]}}" name="content">
+          <input type="text" class="input-update" value="{{$item["breakfast"]}}" name="breakfast">
         </td>
         <td>
-          <input type="text" class="input-update" value="{{$items["lunch"]}}" name="content">
+          <input type="text" class="input-update" value="{{$item["lunch"]}}" name="lunch">
         </td>
         <td>
-          <input type="text" class="input-update" value="{{$items["dinner"]}}" name="content">
+          <input type="text" class="input-update" value="{{$item["dinner"]}}" name="dinner">
         </td>
         <td>
-        <input type="hidden" name="id" value={{$items["id"]}}>
+        <input type="hidden" name="id" value={{$item["id"]}}>
         <input type="submit" value="更新" class="update-btn"></button>
         </form>
         </td>
         <td>
         <form action="/todo/delete" method="POST">
         @csrf
-        <input type="hidden" name="id" value={{$items["id"]}}>
+        <input type="hidden" name="id" value={{$item["id"]}}>
         <input type="submit" value="削除" class="delete-btn"></button>
         </form>
         </td>
       </tr>
       @endforeach
-
-      <div class="empty">
-      <tr>
-        <td>
-          {{$items["updated_at"]}}
-        </td>
-        <form action="/todo/update" method="POST">
-        @csrf
-          <td>
-            <input type="text" class="input-add" value="" name="content">
-          </td>
-          <td>
-            <input type="text" class="input-add" value="" name="content">
-          </td>
-          <td>
-            <input type="text" class="input-add" value="" name="content">
-          </td>
-          <td>
-            <input type="hidden" name="id" value={{$items["id"]}}>
-            <input type="submit" value="更新" class="update-btn"></button>
-          </form>
-        </td>
-        <td>
-          <form action="/todo/delete" method="POST">
-          @csrf
-          <input type="hidden" name="id" value={{$items["id"]}}>
-          <input type="submit" value="削除" class="delete-btn"></button>
-        </form>
-      </td>
-    </tr>
-  </div>
     </table>
     </div>
   </div>
 </div>
-<script>
-  const target = document.getElementById("add-btn");
-target.addEventListener('click', () => {
-  target('open');
-});
-</script>
 </body>
 </html>

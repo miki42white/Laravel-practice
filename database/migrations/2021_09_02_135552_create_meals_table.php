@@ -20,6 +20,8 @@ class CreateMealsTable extends Migration
             $table->string('dinner');
             $table->timestamp('created_at')->useCurrent()->nullable();
             $table->timestamp('updated_at')->useCurrent()->nullable();
+            $table->date('date')->useCurrent()->nullable();
+
         });
     }
 
