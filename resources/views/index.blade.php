@@ -87,7 +87,6 @@
       <input type="date" name="date">
       <input type="submit" value="記録する" class="add-btn" id="add-btn">
       <table>
-      @foreach($items as $item)
       <tr>
         <th>作成日</th>
         <th>朝食</th>
@@ -97,7 +96,7 @@
         <th>削除</th>
       </tr>
       <td>
-      {{$item["date"]}}
+      {{$items["date"]}}
       </td>
       <td>
         <input type="text" class="input-add" value="" name="breakfast">
@@ -108,19 +107,21 @@
       <td>
         <input type="text" class="input-add" value="" name="dinner">
       </td>
-      <td>
-        <input type="hidden" name="id" value="{{$item->id}}">
-        <input type="submit" value="更新" class="update-btn">
-      </td>
+      </form>
+      <form action="/todo/update" method="POST">
+        <td>
+          <input type="hidden" name="id" value="{{$items->id}}">
+          <input type="submit" value="更新" class="update-btn">
+        </form>
+        </td>
       <td>
         <form action="/todo/delete" method="POST">
         @csrf
-        <input type="hidden" name="id" value={{$item["id"]}}>
+        <input type="hidden" name="id" value={{$items["id"]}}>
         <input type="submit" value="削除" class="delete-btn"></button>
         </form>
       </td>
       </tr>
-      @endforeach
     </table>
     </form>
     <table>
