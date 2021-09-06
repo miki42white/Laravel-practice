@@ -10,8 +10,4 @@ class Meal extends Model
     use HasFactory;
 
     protected $fillable = ['breakfast','lunch','dinner','date'];
-
-    public static $rules = array(
-      'breakfast','lunch','dinner'=> 'required'
-  );
 }
